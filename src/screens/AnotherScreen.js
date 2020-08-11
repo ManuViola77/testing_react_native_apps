@@ -1,16 +1,34 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
 
-const AnotherScreen = ({route}) => {
+import styles from './styles';
+
+const AnotherScreen = ({navigation, route}) => {
   const {
     paramOne,
     paramTwo: {content},
   } = route.params;
+
   return (
-    <SafeAreaView>
-      <Text>This is another Screen</Text>
-      <Text>{paramOne}</Text>
-      <Text>{content}</Text>
+    <SafeAreaView testID="AnotherScreen">
+      <TouchableOpacity
+        onPress={() => navigation.navigate('MainScreen')}
+        testID="back-button">
+        <Text style={styles.backButton}>Back</Text>
+      </TouchableOpacity>
+      <Text style={styles.title} testID="title">
+        This is another Screen
+      </Text>
+      {!!paramOne && (
+        <Text style={styles.text} testID="param-one">
+          {paramOne}
+        </Text>
+      )}
+      {!!content && (
+        <Text style={styles.text} testID="param-two-content">
+          {content}
+        </Text>
+      )}
     </SafeAreaView>
   );
 };

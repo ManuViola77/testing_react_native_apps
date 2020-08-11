@@ -1,5 +1,6 @@
 import React from 'react';
 import {Alert, SafeAreaView, Text, TouchableOpacity} from 'react-native';
+import styles from './styles';
 
 const MainScreen = ({navigation}) => {
   const goToAnotherScreen = () =>
@@ -15,13 +16,22 @@ const MainScreen = ({navigation}) => {
       {text: 'ok'},
     ]);
   };
+
   return (
-    <SafeAreaView>
-      <TouchableOpacity onPress={goToAnotherScreen}>
-        <Text>Press here to go to another screen</Text>
+    <SafeAreaView testID="MainScreen">
+      <TouchableOpacity
+        onPress={goToAnotherScreen}
+        style={styles.button}
+        testID="button-to-another-screen">
+        <Text style={styles.buttonText}>
+          Press here to go to another screen
+        </Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={showAlert}>
-        <Text>Press to show alert</Text>
+      <TouchableOpacity
+        onPress={showAlert}
+        style={styles.button}
+        testID="alert-button">
+        <Text style={styles.buttonText}>Press to show alert</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
